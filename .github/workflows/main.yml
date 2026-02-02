@@ -5,6 +5,9 @@ on: [push]
 jobs:
   tests:
     runs-on: ubuntu-latest
+    strategy:
+      fmatrix:
+        python-version: ['3.8', '3.9', '3.10']
 
     steps:
     - name: Checkout du code
@@ -13,7 +16,14 @@ jobs:
     - name: Installation de python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.10'
+        python-version: ${{ matrix.python-version }}
 
     - name: Execution du script
       run: python main.py
+
+    - name: Installation des dépendances
+      run: pip install fastapi locust pytest uvicorn coverage httpx pytest-mock pytest-profiling pylint sqlalchemy pydantic
+
+    - name: Execution des tests
+      run: |
+        pytest --cov=./ --cov-report=xml
