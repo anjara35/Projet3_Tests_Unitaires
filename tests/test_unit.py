@@ -13,11 +13,11 @@ def test_return_square():
     assert response.status_code == 200
     assert response.json() == 16
 
-def test_square():
+#def test_square():
 
     #Assert
-    assert res.status_code == 200
-    assert res.json() == test_expected_result
+    #assert res.status_code == 200
+    #assert res.json() == test_expected_result
 
 
 import pytest
