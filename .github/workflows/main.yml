@@ -26,4 +26,4 @@ jobs:
 
     - name: Execution des tests
       run: |
-        pytest --cov=./ --cov-report=xml
+        pytest
